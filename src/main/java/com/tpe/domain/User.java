@@ -34,8 +34,16 @@ public class User {
     private String password;                //karmasik ve uzun olacak
 
     //role
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id")) //opsiyonel
     private Set<Role> roles = new HashSet<>();
 
+
+    public User(String firstName, String lastName, String userName, String password, Set<Role> roles) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
+        this.roles = roles;
+    }
 }
